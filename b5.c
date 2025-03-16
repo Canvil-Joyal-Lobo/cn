@@ -76,3 +76,39 @@ $ns at 0.1 "$telneto start"
 $ns at 5.0 "finish"
 
 $ns run
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//ftp.awk
+
+BEGIN{
+drop=0;
+sent=0;
+rec=0;
+ratio=0;
+}
+{
+if ($1 == "d") drop++;
+if ($1=="+")
+sent++;
+if($1=="r")
+rec++;
+ratio=(rec/sent)*100;
+}
+END{
+printf" \nTotal number of packet sent from source:%d", sent;
+printf" \nTotal number of packet received at destination :%d", rec;
+printf" \nTotal number of packet dropped :%d", drop;
+printf" \nPacket delivery ratio: %f\n",ratio;
+}
